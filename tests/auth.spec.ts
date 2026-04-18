@@ -33,6 +33,5 @@ for (let i = 0; i < 10; i++) {
 
     await expect(page).toHaveURL("http://localhost:3000/dashboard");
 
-    await fce.inboxes.unregister(inbox);
   });
 }
