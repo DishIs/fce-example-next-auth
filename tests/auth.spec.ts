@@ -1,8 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { FreecustomEmailClient } from "freecustom-email";
 
+const apiKey = process.env.FCE_API_KEY;
+
+if (!apiKey) {
+  throw new Error("FCE_API_KEY environment variable is missing.");
+}
+
 const fce = new FreecustomEmailClient({
-  apiKey: "fce_b16d4e5482b9f15324a92d14cdf7b1b9358ba5d42b0dda005da2867e209dadd7",
+  apiKey: apiKey,
 });
 
 for (let i = 0; i < 10; i++) {
@@ -14,7 +20,6 @@ for (let i = 0; i < 10; i++) {
 
     await fce.inboxes.register(inbox, true);
     await fce.inboxes.startTest(inbox, "e2e-signup-1");
-
 
     await page.goto("http://localhost:3000/auth/signin");
     await page.fill('[name="email"]', inbox);
