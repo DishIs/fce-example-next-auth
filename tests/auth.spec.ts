@@ -33,5 +33,9 @@ for (let i = 0; i < 10; i++) {
 
     await expect(page).toHaveURL("http://localhost:3000/dashboard");
 
+    // YOU CAN CUSTOMIZE THIS BEHAVIOR:
+    // It's a good practice to unregister the used inbox at the end of the test.
+    // await fce.inboxes.unregister(inbox);
+    // Alternatively, using the client: await fce.inboxes.unregister('pw-test@ditube.info');
   });
 }
