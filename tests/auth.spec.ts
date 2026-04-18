@@ -2,17 +2,19 @@ import { test, expect } from "@playwright/test";
 import { FreecustomEmailClient } from "freecustom-email";
 
 const fce = new FreecustomEmailClient({
-  apiKey: process.env.FCE_API_KEY || "fce_87d4fe140cb1e12d51a3ef91a337390d732b07bb7acdf678db115089b2adc2e0",
+  apiKey: "fce_b16d4e5482b9f15324a92d14cdf7b1b9358ba5d42b0dda005da2867e209dadd7",
 });
 
 for (let i = 0; i < 10; i++) {
   test(`signup with email verification ${i}`, async ({ page }) => {
     // Stagger requests to avoid rate limiting
     await new Promise(r => setTimeout(r, i * 100));
-    
+
     const inbox = `pw-test-${Date.now() + Math.random()}@ditapi.info`;
-    
-    await fce.inboxes.register(inbox);
+
+    await fce.inboxes.register(inbox, true);
+    await fce.inboxes.startTest(inbox, "e2e-signup-1");
+
 
     await page.goto("http://localhost:3000/auth/signin");
     await page.fill('[name="email"]', inbox);
@@ -25,7 +27,7 @@ for (let i = 0; i < 10; i++) {
     await page.click('[data-testid="verify-btn"]');
 
     await expect(page).toHaveURL("http://localhost:3000/dashboard");
-    
+
     await fce.inboxes.unregister(inbox);
   });
 }
