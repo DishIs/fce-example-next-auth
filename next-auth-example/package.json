@@ -1,11 +1,18 @@
 {
   "private": true,
-  "description": "An example project for NextAuth.js with Next.js",
-  "repository": "https://github.com/nextauthjs/next-auth-example.git",
+  "description": "An example project for NextAuth.js with Next.js, integrated with FreeCustom.Email for testing.",
+  "repository": "https://github.com/DishIs/fce-example-next-auth",
   "bugs": {
-    "url": "https://github.com/nextauthjs/next-auth/issues"
+    "url": "https://github.com/DishIs/fce-example-next-auth/issues"
   },
-  "homepage": "https://next-auth-example.vercel.app",
+  "homepage": "https://github.com/DishIs/fce-example-next-auth#readme",
+  "keywords": [
+    "next-auth",
+    "next.js",
+    "freecustom.email",
+    "authentication",
+    "email-testing"
+  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
